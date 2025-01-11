@@ -1,0 +1,45 @@
+<div>
+    <form [formGroup]="searchForm" (ngSubmit)="fetchPayments()">
+      <input formControlName="search" placeholder="Search by name" />
+      <select formControlName="status">
+        <option value="">All Status</option>
+        <option value="due_now">Due Now</option>
+        <option value="overdue">Overdue</option>
+        <option value="completed">Completed</option>
+      </select>
+      <button type="submit">Search</button>
+    </form>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Payee Name</th>
+          <th>Payment Status</th>
+          <th>Due Date</th>
+          <th>Total Due</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let payment of payments">
+          <td>{{ payment.payee_first_name }} {{ payment.payee_last_name }}</td>
+          <td>{{ payment.payee_payment_status }}</td>
+          <td>{{ payment.payee_due_date }}</td>
+          <td>{{ payment.total_due }}</td>
+          <td>
+            <button (click)="editPayment(payment)">Edit</button>
+            <button (click)="deletePayment(payment._id)">Delete</button>
+            <button *ngIf="payment.evidence_file" (click)="downloadEvidence(payment._id)">
+              Download Evidence
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <pagination-controls
+      (pageChange)="onPageChange($event)"
+      [totalItems]="totalItems"
+      [itemsPerPage]="pageSize"
+    ></pagination-controls>
+  </div>  

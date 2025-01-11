@@ -1,0 +1,24 @@
+# Node.js (Angular)
+frontend/node_modules/
+frontend/dist/
+
+# Python
+backend/venv/
+__pycache__/
+*.pyc
+
+# Environment Files
+.env
+.env.*
+
+# Logs
+*.log
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# IDE Settings (optional, if you use VS Code or others)
+.vscode/
+.idea/
+*.iml
